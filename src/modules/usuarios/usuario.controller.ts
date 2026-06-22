@@ -1,0 +1,59 @@
+import { Controller, Post, Param, Put, Patch, Get, Delete, Body, Query, Search} from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
+import { UsuariosService } from "./usuario.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { SearchUserDto } from "./dto/search-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+
+@ApiTags('Usuario')
+@Controller('Usuario')
+
+export class UsuarioController{
+    constructor(
+        private readonly service:
+        UsuariosService,
+    ){}
+
+    @Post()
+    Create(
+        @Body()
+        dto:CreateUserDto
+    ){
+        return this.service.create(dto);
+    }
+
+    @Get()
+    findAll(
+        @Query()
+        Search:SearchUserDto
+    ){
+        return this.service.findAll(Search);
+    }
+
+    @Get(':id')
+    findOne(
+        @Param('id')
+        id:string
+    ){
+        return this.service.findOne(id);
+    }
+
+    @Put(':id')
+    update(
+        @Param('id')
+        id:string,
+
+        @Body()
+        dto:UpdateUserDto,
+    ){
+        return this.service.update(id,dto);
+    }
+
+    @Delete(':id')
+    remove(
+        @Param('id')
+        id:string
+    ){
+        return this.service.remove(id);
+    }
+}
