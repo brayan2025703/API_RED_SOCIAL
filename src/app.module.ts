@@ -5,6 +5,10 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RolesModule } from './modules/roles/roles.module';
 import { UsuarioModule } from './modules/usuarios/usuario.module';
+import { ComentariosModule } from './modules/comentarios/comentarios.module';
+import { PublicacionesModule } from './modules/publicaciones/publicaciones.module';
+import { ReaccionesModule } from './modules/reacciones/reacciones.module';
+import { SeguidoresModule } from './modules/seguidores/seguidores.module';
 
 
 
@@ -15,6 +19,10 @@ import { UsuarioModule } from './modules/usuarios/usuario.module';
     }),
     RolesModule,
     UsuarioModule,
+    ComentariosModule,
+    PublicacionesModule,
+    ReaccionesModule,
+    SeguidoresModule,
     MongooseModule.forRoot(process.env.MONGO_URI as string),
   ],
   controllers: [AppController],
